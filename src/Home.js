@@ -21,7 +21,6 @@ function Home ({getdata}) {
         (elem.name === event.target.textContent ? setList(false) &
         setMail(elem.email) & setPhone(elem.phone) & setSuite(elem.address.suite) & setStreet(elem.address.street) & setCity(elem.address.city) : null ))))
       }
-
     
       
     const displayNew = () => {
@@ -58,24 +57,27 @@ function Home ({getdata}) {
               <button onClick={displayNew} className={!getdata.name ? 'det' : "display"}  id='button'>{getdata.name}</button>
             
             </div>
+          
+            {!list ?
+              <div className={suite ? "display" : "det"}> 
+                <p>numéro : {suite}</p>
+                <p>Rue : {street}</p>
+                <p>Ville : {city}</p>
+                <p>email : {mail}</p>
+                <p>Phone : {phone}</p>
+              </div>
 
-            
-            <div className={list  ? "det" : "display" }>
-              <p>numéro : {suite}</p>
-              <p>Rue : {street}</p>
-              <p>Ville : {city}</p>
-              <p>email : {mail}</p>
-              <p>Phone : {phone}</p>
-            </div>
+              :
 
+              <div id='newList' className={getdata.name ? "display" : "det"}>
+                <p>numéro : {getdata.suite} </p>
+                <p>Rue : {getdata.street} </p>
+                <p>Ville : {getdata.city}</p>
+                <p>email : {getdata.mail}</p>
+                <p>Phone : {getdata.phone}</p>
+              </div>
+            }
 
-            <div className={list && getdata.name ? "display" : "det"}>
-              <p>numéro : {getdata.suite} </p>
-              <p>Rue : {getdata.street} </p>
-              <p>Ville : {getdata.city}</p>
-              <p>email : {getdata.mail}</p>
-              <p>Phone : {getdata.phone}</p>
-            </div>
           </div>
         </header>
         <footer className='footer'>

@@ -27,7 +27,8 @@
   
   .button-detail{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-direction: row;
     
       p {
         margin-right: 30px;
