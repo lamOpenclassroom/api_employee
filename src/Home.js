@@ -11,19 +11,21 @@ function Home ({getdata}) {
     const [street, setStreet] = useState (null);
     const [city, setCity] = useState (null);
     const [phone,setPhone] = useState (null);
-    
+    const [list, setList] = useState(true);
+
     const button = document.querySelector("button");
-    const addButton = document.getElementById("showElement");
 
     const clikPerson = (event) => {
       button.addEventListener("click",(
         datas.map((elem) =>
-        (elem.name === event.target.textContent ? 
-        setMail(elem.email) & setPhone(elem.phone) & setSuite(elem.address.suite) & setStreet(elem.address.street) & setCity(elem.address.city) & addButton.classList.add("det") : null ))))
+        (elem.name === event.target.textContent ? setList(false) &
+        setMail(elem.email) & setPhone(elem.phone) & setSuite(elem.address.suite) & setStreet(elem.address.street) & setCity(elem.address.city) : null ))))
       }
 
+    
+      
     const displayNew = () => {
-        getdata.suite ? addButton.classList.remove("det") : addButton.classList.add("det");
+         setList(true)
     }
   
     useEffect(()=>{
@@ -53,12 +55,12 @@ function Home ({getdata}) {
 
               {load ? datas.map(((element,key) => <button key={key} onClick={clikPerson} >{element.name}</button>)) : <h1>Chargement...</h1>}
               
-              <button onClick={displayNew} className={!getdata.name ? 'det' : "display"} id='button'>{getdata.name}</button>
+              <button onClick={displayNew} className={!getdata.name ? 'det' : "display"}  id='button'>{getdata.name}</button>
             
             </div>
 
             
-            <div className={!suite ? "det" : "display" }>
+            <div className={list  ? "det" : "display" }>
               <p>numéro : {suite}</p>
               <p>Rue : {street}</p>
               <p>Ville : {city}</p>
@@ -66,7 +68,8 @@ function Home ({getdata}) {
               <p>Phone : {phone}</p>
             </div>
 
-            <div id='showElement' className='det'>
+
+            <div className={list && getdata.name ? "display" : "det"}>
               <p>numéro : {getdata.suite} </p>
               <p>Rue : {getdata.street} </p>
               <p>Ville : {getdata.city}</p>
