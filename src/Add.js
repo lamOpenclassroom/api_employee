@@ -44,7 +44,7 @@ function Add({getsetdata,getdata}){
                 }
                 myFetch()
     })    
-        
+
         const handleChange = (e) => {
             const { name, value } = e.target;
             setForm({
